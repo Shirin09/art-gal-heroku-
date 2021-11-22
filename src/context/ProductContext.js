@@ -37,7 +37,7 @@ const ProductsContextProvider = ({ children }) => {
 
   const getPaintings = async (params = "") => {
     //history
-    const { data } = await axios(`http://localhost:8000/paintings/?${params}`);
+    const { data } = await axios(`https://art-shop-gallery.herokuapp.com/api/paintings/?${params}`);
     dispatch({
       type: "GET_PAINTINGS",
       payload: data,
@@ -45,11 +45,11 @@ const ProductsContextProvider = ({ children }) => {
   };
 
   async function addPaintings(product) {
-    await axios.post(`http://localhost:8000/paintings`, product);
+    await axios.post(`https://art-shop-gallery.herokuapp.com/api/paintings`, product);
     getPaintings();
   }
   async function getPaintingDetails(id) {
-    let { data } = await axios(`http://localhost:8000/paintings/${id}`);
+    let { data } = await axios(`https://art-shop-gallery.herokuapp.com/api/paintings/${id}`);
     dispatch({ type: "GET_PAINTING_DETAILS", payload: data });
   }
 
@@ -58,12 +58,12 @@ const ProductsContextProvider = ({ children }) => {
     setDataId(id);
   }
   async function deletePainting(id) {
-    await axios.delete(`http://localhost:8000/paintings/${id}`);
+    await axios.delete(`https://art-shop-gallery.herokuapp.com/api/paintings/${id}`);
     getPaintings();
   }
 
   async function editPaintingDetails(obj) {
-    await axios.patch(`http://localhost:8000/paintings/${dataId}`, obj);
+    await axios.patch(`https://art-shop-gallery.herokuapp.com/api/paintings/${dataId}`, obj);
     getPaintings();
   }
 
